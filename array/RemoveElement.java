@@ -43,3 +43,14 @@ public class RemoveElement {
         System.out.println("Returned length: " + newLength);
     }
 }
+/*
+Key Idea (Before Steps)
+
+i → scans every element
+
+k → points to where the next valid element should go
+
+Elements before k are always valid
+
+
+*/
