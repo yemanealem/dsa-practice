@@ -23,3 +23,12 @@ public class LengthOfLastWord {
         System.out.println(sol.lengthOfLastWord("a "));                    
     }
 }
+
+
+/*
+
+String[] words = s.trim().split(" "); // remove leading/trailing spaces and split
+        return words[words.length - 1].length();
+
+
+*/
