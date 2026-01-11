@@ -44,3 +44,10 @@ public class WordPattern {
         System.out.println(wp.wordPattern(pattern4, s4)); 
     }
 }
+
+/*
+
+
+word patter
+
+*/
