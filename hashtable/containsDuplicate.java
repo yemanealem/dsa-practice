@@ -28,3 +28,26 @@ public class ContainsDuplicate {
         System.out.println("Test case 2: " + solution.containsDuplicate(nums2)); // true
     }
 }
+
+/*
+ int initialCapacity = (int) (nums.length / 0.75f) + 1;
+
+HashSet in Java resizes automatically when it exceeds 75% of its capacity.
+
+To avoid resizing (which is slow), we pre-calculate the initial capacity.
+
+Formula: capacity = expectedSize / loadFactor + 1
+
+nums.length / 0.75 → ensures enough space for all numbers.
+
+Example: if nums.length = 5, then 5 / 0.75 ≈ 6.66 → 7.
+
+. HashSet<Integer> dups = new HashSet<>(initialCapacity);
+
+Creates a HashSet called dups to store numbers we have seen so far.
+
+Pre-sizing it improves performance because no resizing occurs.
+
+
+
+*/
