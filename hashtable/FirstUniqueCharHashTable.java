@@ -40,3 +40,37 @@ public class FirstUniqueCharHashTable {
         System.out.println("Test 5: " + sol.firstUniqChar(test5)); 
     }
 }
+
+
+/*
+
+
+How It Works (Step by Step)
+
+Create frequency array
+
+int[] count = new int[26] tracks the number of times each lowercase letter appears.
+
+'a' → index 0, 'b' → index 1, … 'z' → index 25.
+
+Count all characters
+
+Loop through the string once.
+
+Example: "leetcode" → 'l':1, 'e':3, 't':1, 'c':1, 'o':1, 'd':1.
+
+Find first unique character
+
+Loop through the string again.
+
+Check count[s.charAt(i) - 'a'] == 1.
+
+The first character with count 1 is the answer.
+
+Return result
+
+If no character has count 1 → return -1
+
+
+
+*/
