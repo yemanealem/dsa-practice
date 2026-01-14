@@ -34,3 +34,19 @@ public class ContainsDuplicateII {
         System.out.println("Test 3: " + containsNearbyDuplicate(nums3, k3)); // false
     }
 }
+
+
+/*
+
+I used a HashMap to remember the last index where each number appeared.
+
+For each number:
+
+If it’s in the map and the distance to the current index ≤ k, we return true.
+
+Otherwise, we update the number’s last index.
+
+If we finish the array without finding such a pair, we return false.
+
+
+*/
