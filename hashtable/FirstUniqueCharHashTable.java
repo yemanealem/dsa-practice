@@ -1,35 +1,42 @@
-import java.util.HashMap;
-import java.util.Map;
-
 public class FirstUniqueCharHashTable {
 
-    public static int firstUniqChar(String s) {
-        Map<Character, Integer> freqMap = new HashMap<>();
+    // Method to find the index of the first unique character
+    public int firstUniqChar(String s) {
+        int n = s.length();
+        int[] count = new int[26]; // array to count 'a' to 'z'
 
-        // Step 1: Count frequency of each character
-        for (char c : s.toCharArray()) {
-            freqMap.put(c, freqMap.getOrDefault(c, 0) + 1);
+        // Count frequency of each character
+        for (int i = 0; i < n; i++) {
+            count[s.charAt(i) - 'a']++;
         }
 
-        // Step 2: Find first character with frequency 1
-        for (int i = 0; i < s.length(); i++) {
-            if (freqMap.get(s.charAt(i)) == 1) {
+        // Find the first character with frequency 1
+        for (int i = 0; i < n; i++) {
+            if (count[s.charAt(i) - 'a'] == 1) {
                 return i;
             }
         }
 
-        return -1; // No unique character found
+        return -1; // no unique character
     }
 
     // Main method to test
     public static void main(String[] args) {
-        String s1 = "leetcode";
-        System.out.println("Test 1: " + firstUniqChar(s1)); // 0
+        FirstUniqueCharHashTable sol = new FirstUniqueCharHashTable();
 
-        String s2 = "loveleetcode";
-        System.out.println("Test 2: " + firstUniqChar(s2)); // 2
+        String test1 = "leetcode";
+        System.out.println("Test 1: " + sol.firstUniqChar(test1)); 
 
-        String s3 = "aabbcc";
-        System.out.println("Test 3: " + firstUniqChar(s3)); // -1
+        String test2 = "loveleetcode";
+        System.out.println("Test 2: " + sol.firstUniqChar(test2)); 
+
+        String test3 = "aabbcc";
+        System.out.println("Test 3: " + sol.firstUniqChar(test3)); 
+
+        String test4 = "z";
+        System.out.println("Test 4: " + sol.firstUniqChar(test4)); 
+
+        String test5 = "aabbccddeef";
+        System.out.println("Test 5: " + sol.firstUniqChar(test5)); 
     }
 }
