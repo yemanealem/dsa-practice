@@ -1,20 +1,23 @@
-public class DetectCapital {
+class Solution {
+    public boolean detectCapitalUse(String word) {
+         int n = word.length();
+        if (n == 1) return true; 
 
-    public static boolean detectCapitalUse(String word) {
-        if (word.equals(word.toUpperCase())) return true; // all caps
-        if (word.equals(word.toLowerCase())) return true; // all lowercase
-        if (Character.isUpperCase(word.charAt(0)) && 
-            word.substring(1).equals(word.substring(1).toLowerCase())) return true; // first capital
-        return false;
-    }
+        // Check first character to determine pattern
+        boolean firstIsUpper = Character.isUpperCase(word.charAt(0));
+        boolean secondIsUpper = Character.isUpperCase(word.charAt(1));
 
-    public static void main(String[] args) {
-        String word1 = "USA";
-        String word2 = "FlaG";
-        String word3 = "Google";
+        if (firstIsUpper && secondIsUpper) {
+            // Pattern: All uppercase
+            for (int i = 2; i < n; i++) {
+                if (!Character.isUpperCase(word.charAt(i))) return false;
+            }
+        } else {
+            for (int i = 1; i < n; i++) {
+                if (Character.isUpperCase(word.charAt(i))) return false;
+            }
+        }
 
-        System.out.println(detectCapitalUse(word1)); // true
-        System.out.println(detectCapitalUse(word2)); // false
-        System.out.println(detectCapitalUse(word3)); // true
+        return true;
     }
 }
