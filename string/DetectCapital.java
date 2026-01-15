@@ -1,14 +1,12 @@
-class Solution {
+class DetectCapital {
     public boolean detectCapitalUse(String word) {
          int n = word.length();
         if (n == 1) return true; 
 
-        // Check first character to determine pattern
         boolean firstIsUpper = Character.isUpperCase(word.charAt(0));
         boolean secondIsUpper = Character.isUpperCase(word.charAt(1));
 
         if (firstIsUpper && secondIsUpper) {
-            // Pattern: All uppercase
             for (int i = 2; i < n; i++) {
                 if (!Character.isUpperCase(word.charAt(i))) return false;
             }
