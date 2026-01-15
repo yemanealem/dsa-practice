@@ -1,26 +1,23 @@
 public class FindTheDifference {
 
     public static char findTheDifference(String s, String t) {
-        int[] count = new int[26]; 
+        int sumS = 0, sumT = 0;
 
         for (char c : s.toCharArray()) {
-            count[c - 'a']++;
+            sumS += c;
         }
 
         for (char c : t.toCharArray()) {
-            count[c - 'a']--;
-            if (count[c - 'a'] < 0) {
-                return c; 
-            }
+            sumT += c;
         }
 
-        return ' ';
+        return (char)(sumT - sumS);
     }
 
     public static void main(String[] args) {
         String s = "abcd";
         String t = "abcde";
 
-        System.out.println("Extra character: " + findTheDifference(s, t));
+        System.out.println("Extra character: " + findTheDifference(s, t)); // Output: e
     }
 }
