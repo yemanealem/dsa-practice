@@ -1,22 +1,32 @@
-class Solution {
-    public String removeOuterParentheses(String s) {
-         Stack<Character> stack = new Stack<>();
+public class RemoveOuterParentheses {
+
+    // Method to remove outermost parentheses
+    public String removeOuterParentheses(String S) {
         StringBuilder result = new StringBuilder();
+        int depth = 0; // Tracks current nesting depth
         
-        for (char c : s.toCharArray()) {
+        for (char c : S.toCharArray()) {
             if (c == '(') {
-                if (!stack.isEmpty()) { 
+                if (depth > 0) { // Not outermost
                     result.append(c);
                 }
-                stack.push(c);
-            } else { 
-                stack.pop();
-                if (!stack.isEmpty()) { 
+                depth++; // Increase depth
+            } else { // c == ')'
+                depth--; // Decrease depth
+                if (depth > 0) { // Not outermost
                     result.append(c);
                 }
             }
         }
         
         return result.toString();
+    }
+
+    // Main method to test
+    public static void main(String[] args) {
+        RemoveOuterParentheses solution = new RemoveOuterParentheses();
+        String input = "(()())(())";
+        String output = solution.removeOuterParentheses(input);
+        System.out.println(output); // Expected Output: "()()()"
     }
 }
