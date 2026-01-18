@@ -1,17 +1,14 @@
-// Stack to store intermediate results
+class Solution {
+    public int calculate(String s) {
         Deque<Integer> stack = new ArrayDeque<>();
       
-        // Current operator, initialized to '+'
         char operator = '+';
       
-        // Current number being parsed
         int currentNumber = 0;
       
-        // Iterate through each character in the string
         for (int i = 0; i < s.length(); i++) {
             char currentChar = s.charAt(i);
           
-            // Build multi-digit numbers
             if (Character.isDigit(currentChar)) {
                 currentNumber = currentNumber * 10 + (currentChar - '0');
             }
@@ -52,3 +49,5 @@
         }
       
         return result;
+    }
+}
