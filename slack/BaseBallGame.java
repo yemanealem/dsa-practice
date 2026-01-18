@@ -1,5 +1,42 @@
-public class BaseBallGame {
-    
+class BaseBallGame {
+    public int calPoints(String[] ops) {
+        int n = ops.length;
+        int[] scores = new int[n]; // act as a stack
+        int top = -1;              // top index
+        int total = 0;
+
+        for (String op : ops) {
+            switch (op) {
+                case "C":
+                    total -= scores[top]; // remove last score from total
+                    top--;                // remove last score
+                    break;
+                case "D":
+                    scores[++top] = scores[top - 1] * 2;
+                    total += scores[top];
+                    break;
+                case "+":
+                    scores[++top] = scores[top - 1] + scores[top - 2];
+                    total += scores[top];
+                    break;
+                default: // number
+                    scores[++top] = Integer.parseInt(op);
+                    total += scores[top];
+                    break;
+            }
+        }
+
+        return total;
+    }
+
+    public static void main(String[] args) {
+        BaseBallGame sol = new BaseBallGame();
+        String[] ops1 = {"5","2","C","D","+"};
+        System.out.println(sol.calPoints(ops1)); // Output: 30
+
+        String[] ops2 = {"5","-2","4","C","D","9","+","+"};
+        System.out.println(sol.calPoints(ops2)); // Output: 27
+    }
 }
 
 
