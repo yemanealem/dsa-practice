@@ -146,3 +146,57 @@ Using a manual stack array (as in your first implementation) is O(n) time, which
 
 
 */
+
+
+/*
+
+With two pointer
+
+public class ClearDigitsTwoPointer {
+
+    public String clearDigits(String s) {
+        char[] arr = s.toCharArray();
+        int write = 0; // pointer to write the next valid char
+
+        for (int read = 0; read < arr.length; read++) {
+            char ch = arr[read];
+
+            if (Character.isDigit(ch)) {
+                // Remove closest non-digit to the left
+                int temp = write - 1;
+                while (temp >= 0 && Character.isDigit(arr[temp])) {
+                    temp--; // skip consecutive digits
+                }
+                if (temp >= 0) write = temp; // remove closest non-digit
+                // Skip current digit
+            } else {
+                arr[write++] = ch; // keep non-digit
+            }
+        }
+
+        return new String(arr, 0, write);
+    }
+
+    public static void main(String[] args) {
+        ClearDigitsTwoPointer solution = new ClearDigitsTwoPointer();
+
+        String[] testCases = {
+            "a1b2c3",       // ""
+            "x9y8z7",       // ""
+            "ab12cd34ef",   // "ef"
+            "1a2b3c",       // ""
+            "abc123def"     // "def"
+        };
+
+        for (String test : testCases) {
+            System.out.println("Input: " + test);
+            System.out.println("Output: " + solution.clearDigits(test));
+            System.out.println("----------------------");
+        }
+    }
+}
+
+
+
+
+*/
