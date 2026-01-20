@@ -140,7 +140,9 @@ public class ClearDigitsNoStack {
     }
 }
 
+The deleteCharAt inside a StringBuilder shifts all characters right of the index, which is why it becomes O(n²) in worst case.
 
+Using a manual stack array (as in your first implementation) is O(n) time, which is more efficient for large strings.
 
 
 */
