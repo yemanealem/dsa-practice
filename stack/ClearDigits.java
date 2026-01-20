@@ -197,6 +197,52 @@ public class ClearDigitsTwoPointer {
 }
 
 
+*/
+
+
+/*
+
+/*
+How it works (Two-Pointer Approach):
+
+1. Iterate over the string from left to right using a read pointer.
+2. Maintain a write pointer to build the result in-place.
+3. If a character is a digit:
+   - Move the write pointer back to remove the closest non-digit to its left.
+   - Skip adding the current digit.
+4. If a character is not a digit:
+   - Write it at the current write pointer position.
+   - Increment the write pointer.
+5. After processing all characters, the first 'write' characters in the array contain the remaining string.
+6. Convert the array from index 0 to write-1 into a string and return it.
+
+Example Trace (input: "ab12cd34ef"):
+
+Step | Read Char | Action                          | Array (0..write-1)
+-----|-----------|---------------------------------|------------------
+1    | 'a'       | Non-digit → write               | [a]
+2    | 'b'       | Non-digit → write               | [a, b]
+3    | '1'       | Digit → remove closest non-digit| [a]    (removed 'b')
+4    | '2'       | Digit → remove closest non-digit| []     (removed 'a')
+5    | 'c'       | Non-digit → write               | [c]
+6    | 'd'       | Non-digit → write               | [c, d]
+7    | '3'       | Digit → remove closest non-digit| [c]    (removed 'd')
+8    | '4'       | Digit → remove closest non-digit| []     (removed 'c')
+9    | 'e'       | Non-digit → write               | [e]
+10   | 'f'       | Non-digit → write               | [e, f]
+
+Resulting string: "ef"
+
+Time Complexity:
+- O(n), where n is the length of the input string.
+- Each character is processed exactly once.
+
+Space Complexity:
+- O(n) for the character array used to build the result in-place.
+*/
+
+
+
 
 
 */
