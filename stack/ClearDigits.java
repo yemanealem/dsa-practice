@@ -85,3 +85,62 @@ Time Complexity:
 Space Complexity:
 - O(n) for the stack array, where n is the length of the input string.
 */
+
+
+
+/*
+With out using stack
+public class ClearDigitsNoStack {
+
+    public String clearDigits(String s) {
+        StringBuilder sb = new StringBuilder(s);
+
+        int i = 0;
+        while (i < sb.length()) {
+            char ch = sb.charAt(i);
+
+            if (Character.isDigit(ch)) {
+                // Find closest non-digit to the left
+                int left = i - 1;
+                while (left >= 0 && Character.isDigit(sb.charAt(left))) {
+                    left--; // skip any digits
+                }
+                // Remove the non-digit if it exists
+                if (left >= 0) sb.deleteCharAt(left);
+
+                // Remove current digit (shifted if left was removed)
+                sb.deleteCharAt(left >= 0 ? i - 1 : i);
+
+                // Reset index to max(left,0) to check from new position
+                i = Math.max(left, 0);
+            } else {
+                i++; // move to next character
+            }
+        }
+
+        return sb.toString();
+    }
+
+    public static void main(String[] args) {
+        ClearDigitsNoStack solution = new ClearDigitsNoStack();
+
+        String[] testCases = {
+            "a1b2c3",       // should return ""
+            "x9y8z7",       // should return ""
+            "ab12cd34ef",   // should return "ef"
+            "1a2b3c",       // should return ""
+            "abc123def"     // should return "def"
+        };
+
+        for (String test : testCases) {
+            System.out.println("Input: " + test);
+            System.out.println("Output: " + solution.clearDigits(test));
+            System.out.println("----------------------");
+        }
+    }
+}
+
+
+
+
+*/
