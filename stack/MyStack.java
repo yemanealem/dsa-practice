@@ -1,6 +1,9 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 class MyStack {
 
-private Queue<Integer> queue;
+    private Queue<Integer> queue;
 
     public MyStack() {
         queue = new LinkedList<>();
@@ -32,5 +35,22 @@ private Queue<Integer> queue;
         return queue.isEmpty();
     }
 
+    // Main method for testing
+    public static void main(String[] args) {
+        MyStack stack = new MyStack();
 
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+
+        System.out.println(stack.top());   // 3
+        System.out.println(stack.pop());   // 3
+        System.out.println(stack.top());   // 2
+        System.out.println(stack.empty()); // false
+
+        stack.pop();
+        stack.pop();
+
+        System.out.println(stack.empty()); // true
+    }
 }
