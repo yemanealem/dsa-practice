@@ -43,14 +43,63 @@ class MyStack {
         stack.push(2);
         stack.push(3);
 
-        System.out.println(stack.top());   // 3
-        System.out.println(stack.pop());   // 3
-        System.out.println(stack.top());   // 2
-        System.out.println(stack.empty()); // false
+        System.out.println(stack.top());  
+        System.out.println(stack.pop());  
+        System.out.println(stack.top());   
+        System.out.println(stack.empty()); 
 
         stack.pop();
         stack.pop();
 
-        System.out.println(stack.empty()); // true
+        System.out.println(stack.empty()); 
     }
 }
+
+
+/*
+How it works (Stack using Single Queue Approach):
+
+1. Use a custom queue implemented with a circular array to store elements.
+   - The front of the queue always represents the top of the stack.
+   - rear points to where the next element will be inserted.
+   - size tracks the number of elements in the queue.
+
+2. push(x):
+   - Add x to the rear of the queue using offer().
+   - Rotate the queue size-1 times:
+       - Remove the element from the front (poll()) and add it to the rear (offer()).
+       - This moves the newly added element to the front, simulating stack behavior (LIFO).
+   
+3. pop():
+   - Remove and return the element from the front of the queue (queue.poll()).
+   - This corresponds to removing the top of the stack.
+
+4. top():
+   - Return the element at the front of the queue without removing it (queue.peek()).
+   - This corresponds to reading the top of the stack.
+
+5. empty():
+   - Return true if the queue is empty (size == 0), false otherwise.
+
+Example Trace (push sequence: 10, 20, 30):
+
+Step | Operation     | Queue (front → rear) | Top of Stack
+-----|---------------|--------------------|-------------
+1    | push(10)      | [10]               | 10
+2    | push(20)      | [20, 10]           | 20
+3    | push(30)      | [30, 20, 10]       | 30
+4    | top()         | [30, 20, 10]       | 30
+5    | pop()         | [20, 10]           | 20
+6    | top()         | [20, 10]           | 20
+7    | pop()         | [10]               | 10
+8    | pop()         | []                 | - (stack empty)
+
+Time Complexity:
+- push: O(n), because rotation requires moving size-1 elements.
+- pop: O(1)
+- top: O(1)
+- empty: O(1)
+
+Space Complexity:
+- O(n) for storing the elements in the queue.
+*/
