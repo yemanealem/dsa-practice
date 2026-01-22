@@ -40,3 +40,35 @@ public class SearchInsert {
         System.out.println(solution.searchInsert(nums4, target4)); // Output: 0
     }
 }
+
+
+/*
+LeetCode #35 – Search Insert Position
+
+Problem:
+You are given a sorted array of distinct integers and a target value.
+If the target is found in the array, return its index.
+If not, return the index where it should be inserted to maintain the sorted order.
+
+Example:
+Input: nums = [1, 3, 5, 6], target = 2
+Output: 1
+
+Approach (Binary Search):
+
+1. Since the array is sorted, we can use binary search to achieve O(log n) time complexity.
+2. Initialize two pointers:
+   - left = 0 (start of array)
+   - right = nums.length - 1 (end of array)
+3. While left <= right:
+   a. Calculate mid index.
+   b. If nums[mid] == target → return mid (target found).
+   c. If nums[mid] < target → move left pointer to mid + 1.
+   d. If nums[mid] > target → move right pointer to mid - 1.
+4. If the loop ends without finding the target, the left pointer will point to
+   the correct position where the target should be inserted.
+5. Return left.
+
+Time Complexity: O(log n)
+Space Complexity: O(1)
+*/
