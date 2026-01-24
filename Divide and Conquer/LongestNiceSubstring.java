@@ -29,6 +29,11 @@
  *   - Right: "aAay" → all letters nice → "aAa" (length 3)
  * Result: "aAa"
  *
+ * Running Time:
+ * - In practice: O(n), because each character is checked once per recursion level.
+ * - Worst-case: O(n log n), occurs if we split at one character each time.
+ * - Space Complexity: O(log n) recursion stack + O(52) boolean arrays.
+ *
  * This approach avoids substring creation and uses indices + boolean arrays,
  * making it very fast (beats 99% on LeetCode).
  */
