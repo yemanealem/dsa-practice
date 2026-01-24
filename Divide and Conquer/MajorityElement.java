@@ -1,3 +1,27 @@
+/**
+ * LeetCode Problem: Majority Element
+ * 
+ * Question:
+ * Given an array nums of size n, return the majority element.
+ * The majority element is the element that appears more than ⌊n / 2⌋ times.
+ * You may assume that the majority element always exists in the array.
+ * 
+ * Example:
+ * Input: nums = [2,2,1,1,1,2,2]
+ * Output: 2
+ * 
+ * Approach:
+ * We solve this problem using Divide and Conquer (similar to Merge Sort).
+ * 1. Divide the array into two halves recursively.
+ * 2. Find the majority element in the left half and the right half.
+ * 3. Merge step: if both halves agree on the majority, return it.
+ *    Otherwise, count occurrences of both candidates in the current range
+ *    and return the one with higher count.
+ * 
+ * This works because if an element is the majority overall, it must
+ * be the majority in at least one of the halves.
+ */
+
 public class MajorityElement {
 
     // Main function to test the code
@@ -6,6 +30,10 @@ public class MajorityElement {
         MajorityElement me = new MajorityElement();
         int result = me.majorityElement(nums);
         System.out.println("Majority Element is: " + result);
+
+        // Step-by-step trace for nums = [2,2,1,1,1,2,2]
+        System.out.println("\nTrace of Divide & Conquer:");
+        me.trace(nums, 0, nums.length - 1, 0);
     }
 
     // Public method to call divide and conquer
@@ -45,5 +73,39 @@ public class MajorityElement {
             }
         }
         return count;
+    }
+
+    // Extra: Trace function to show steps of divide and conquer
+    private int trace(int[] nums, int left, int right, int depth) {
+        // Indentation for visualizing recursion depth
+        String indent = "  ".repeat(depth);
+
+        if (left == right) {
+            System.out.println(indent + "Base case: nums[" + left + "] = " + nums[left]);
+            return nums[left];
+        }
+
+        int mid = left + (right - left) / 2;
+        System.out.println(indent + "Divide: nums[" + left + ".." + mid + "] and nums[" + (mid + 1) + ".." + right + "]");
+
+        int leftMajor = trace(nums, left, mid, depth + 1);
+        int rightMajor = trace(nums, mid + 1, right, depth + 1);
+
+        System.out.println(indent + "Conquer: leftMajor = " + leftMajor + ", rightMajor = " + rightMajor);
+
+        if (leftMajor == rightMajor) {
+            System.out.println(indent + "Both halves agree. Majority = " + leftMajor);
+            return leftMajor;
+        }
+
+        int leftCount = countInRange(nums, leftMajor, left, right);
+        int rightCount = countInRange(nums, rightMajor, left, right);
+        int majority = leftCount > rightCount ? leftMajor : rightMajor;
+
+        System.out.println(indent + "Counts in range [" + left + ".." + right + "]: "
+                + leftMajor + "=" + leftCount + ", " + rightMajor + "=" + rightCount
+                + " => Majority = " + majority);
+
+        return majority;
     }
 }
