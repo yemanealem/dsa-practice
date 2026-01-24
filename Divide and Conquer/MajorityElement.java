@@ -109,3 +109,29 @@ public class MajorityElement {
         return majority;
     }
 }
+
+/*
+
+✅ How the trace works (for [2,2,1,1,1,2,2]):
+
+Divide array into [2,2,1,1] and [1,2,2]
+
+Further divide [2,2,1,1] → [2,2] and [1,1]
+
+Base cases: [2], [2], [1], [1] → return the element
+
+Conquer left halves: [2,2] → leftMajor=2, rightMajor=2 → Majority=2
+
+Conquer right halves: [1,1] → leftMajor=1, rightMajor=1 → Majority=1
+
+Merge [2,2] and [1,1] → leftMajor=2, rightMajor=1 → count occurrences → Majority=2
+
+Right half [1,2,2] similarly resolves → Majority=2
+
+Merge final left and right halves → counts → Majority=2
+
+This trace prints each divide and conquer step, so you can see exactly how the algorithm works.
+
+
+
+*/
