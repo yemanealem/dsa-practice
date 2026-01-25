@@ -14,7 +14,7 @@
  * }
  */
 
-class Solution {
+class hasPathSum {
 
     /*
     LeetCode 112 – Path Sum
