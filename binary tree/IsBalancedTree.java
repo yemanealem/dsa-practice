@@ -14,7 +14,7 @@
  * }
  */
 
-class Solution {
+class IsBalancedTree {
 
     /*
     LeetCode 110 – Balanced Binary Tree
