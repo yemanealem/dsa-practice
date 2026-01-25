@@ -120,3 +120,11 @@ INTERVIEW TIP:
 ✔ Use -1 to signal imbalance (optimized)
 ❌ Avoid calculating height separately (O(n²) mistake)
 */
+
+
+/*
+30-Second Interview Explanation
+
+“I use a bottom-up DFS. Each recursive call returns the height if the subtree 
+is balanced, or −1 if not. If any subtree is unbalanced,
+ I immediately propagate −1 upward.” */
