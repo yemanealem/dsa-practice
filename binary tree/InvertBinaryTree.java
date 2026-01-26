@@ -102,3 +102,94 @@ public class InvertBinaryTree {
         inorderTraversal(root);
     }
 }
+
+
+/*
+
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class InvertBinaryTree {
+
+    // Definition for a binary tree node
+    static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+    }
+
+    // Iterative method to invert binary tree using BFS
+    public static TreeNode invertTreeIterative(TreeNode root) {
+        if (root == null) return null;
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root); // start with root node
+
+        while (!queue.isEmpty()) {
+            TreeNode current = queue.poll(); // remove node from queue
+
+            // Swap left and right children
+            TreeNode temp = current.left;
+            current.left = current.right;
+            current.right = temp;
+
+            // Add non-null children to queue for later swapping
+            if (current.left != null) queue.add(current.left);
+            if (current.right != null) queue.add(current.right);
+        }
+
+        return root; // return root of inverted tree
+    }
+
+    // Inorder traversal (Left → Root → Right)
+    public static void inorderTraversal(TreeNode root) {
+        if (root == null) return;
+
+        inorderTraversal(root.left);
+        System.out.print(root.val + " ");
+        inorderTraversal(root.right);
+    }
+
+    // Main method
+    public static void main(String[] args) {
+
+        /*
+            Original Tree:
+                    4
+                   / \
+                  2   7
+                 / \ / \
+                1  3 6  9
+        */
+
+//         TreeNode root = new TreeNode(4);
+//         root.left = new TreeNode(2);
+//         root.right = new TreeNode(7);
+//         root.left.left = new TreeNode(1);
+//         root.left.right = new TreeNode(3);
+//         root.right.left = new TreeNode(6);
+//         root.right.right = new TreeNode(9);
+
+//         // Print inorder traversal before inversion
+//         System.out.print("Inorder before inversion: ");
+//         inorderTraversal(root);
+
+//         // Invert using iterative method
+//         invertTreeIterative(root);
+
+//         // Print inorder traversal after inversion
+//         System.out.print("\nInorder after inversion: ");
+//         inorderTraversal(root);
+//     }
+// }
+
+
+
+
+
+
