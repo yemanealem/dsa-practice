@@ -33,6 +33,20 @@ public class InvertBinaryTree {
 
         // Return root of inverted subtree
         return root;
+
+  /*
+  
+  
+          4
+       / \
+      7   2
+     / \ / \
+    9  6 3  1
+
+  
+  
+  */
+        
     }
 
     // Inorder traversal (Left → Root → Right)
