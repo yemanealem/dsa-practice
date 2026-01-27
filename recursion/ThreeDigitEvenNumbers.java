@@ -119,3 +119,49 @@ public class ThreeDigitEvenNumbers {
         System.out.println(Arrays.toString(result));
     }
 }
+
+/*
+
+import java.util.*;
+
+class Solution {
+    Set<Integer> result = new HashSet<>();
+
+    public int[] findEvenNumbers(int[] digits) {
+        boolean[] used = new boolean[digits.length];
+        backtrack(digits, used, 0, 0);
+
+        int[] ans = result.stream().mapToInt(i -> i).toArray();
+        Arrays.sort(ans);
+        return ans;
+    }
+
+    private void backtrack(int[] digits, boolean[] used, int count, int num) {
+        // Base case: formed a 3-digit number
+        if (count == 3) {
+            if (num % 2 == 0) {
+                result.add(num);
+            }
+            return;
+        }
+
+        for (int i = 0; i < digits.length; i++) {
+            if (used[i]) continue;
+
+            // Hundreds digit cannot be 0
+            if (count == 0 && digits[i] == 0) continue;
+
+            // Ones digit must be even
+            if (count == 2 && digits[i] % 2 != 0) continue;
+
+            used[i] = true;
+            backtrack(digits, used, count + 1, num * 10 + digits[i]);
+            used[i] = false; // backtrack
+        }
+    }
+}
+
+
+
+
+*/
