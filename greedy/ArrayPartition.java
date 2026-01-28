@@ -1,58 +1,76 @@
 /**
- * LeetCode 561 – Array Partition
+ * LeetCode 561 – Array Partition (Optimized Greedy)
  *
  * QUESTION:
  * Given an integer array nums of size 2n, divide the array into n pairs
  * such that the sum of the minimum of each pair is maximized.
  *
- * Return the maximum possible sum.
+ * OPTIMIZED GREEDY IDEA:
+ * - Instead of sorting (O(n log n)), use counting sort.
+ * - Constraints: -10000 <= nums[i] <= 10000
+ * - Count occurrences of each number.
+ * - Traverse counts in increasing order.
+ * - Greedily pick every second number as the minimum of a pair.
  *
- * GREEDY IDEA:
- * - Sort the array in ascending order.
- * - Pair adjacent elements after sorting.
- * - Add the first element of each pair to the sum.
- *
- * WHY THIS WORKS:
- * - After sorting, pairing small numbers together prevents a small value
- *   from being wasted by pairing it with a very large number.
- * - The smaller element in each sorted pair is guaranteed to be the minimum.
- * - This greedy local choice leads to the global maximum sum.
+ * WHY THIS IS GREEDY:
+ * - We always take the smallest available numbers first.
+ * - Pairing smaller numbers together maximizes the sum of minimums.
+ * - Skipping every alternate value simulates sorted pairing.
  *
  * STEP-BY-STEP TRACE:
- * Example:
  * nums = [1,4,3,2]
  *
- * 1) Sort array → [1,2,3,4]
- * 2) Form pairs:
- *    (1,2) → min = 1
- *    (3,4) → min = 3
- * 3) Sum = 1 + 3 = 4
+ * Counts after frequency array:
+ * 1 → 1
+ * 2 → 1
+ * 3 → 1
+ * 4 → 1
+ *
+ * Traverse in order:
+ * take 1 → sum = 1
+ * skip 2
+ * take 3 → sum = 4
+ * skip 4
+ *
+ * RESULT = 4
  *
  * RUNNING TIME:
- * - Sorting the array → O(n log n)
- * - Single pass to sum elements → O(n)
- * - Total Time Complexity: O(n log n)
+ * - Counting elements → O(n)
+ * - Traversing fixed range (20001) → O(1)
+ * - Total Time Complexity: O(n)
  *
  * SPACE COMPLEXITY:
- * - Sorting uses O(1) extra space (for in-place sort)
+ * - Frequency array of fixed size (20001) → O(1)
  *
- * EDGE CASES:
- * - Negative numbers work correctly
- * - Order of input does not matter
+ * WHY THIS BEATS SORTING:
+ * - Avoids comparison-based sorting
+ * - Linear scan only
+ * - Very fast for large inputs
  */
-
-import java.util.Arrays;
 
 public class ArrayPartition {
 
     public static int arrayPairSum(int[] nums) {
-        Arrays.sort(nums);
+        int[] count = new int[20001]; // range [-10000, 10000]
+        int offset = 10000;
+
+        // Count frequency
+        for (int num : nums) {
+            count[num + offset]++;
+        }
 
         int sum = 0;
+        boolean take = true;
 
-        // Add every first element of each pair
-        for (int i = 0; i < nums.length; i += 2) {
-            sum += nums[i];
+        // Traverse counts in ascending order
+        for (int i = 0; i < count.length; i++) {
+            while (count[i] > 0) {
+                if (take) {
+                    sum += (i - offset);
+                }
+                take = !take; // alternate take/skip
+                count[i]--;
+            }
         }
 
         return sum;
